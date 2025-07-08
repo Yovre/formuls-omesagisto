@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMESAGISTO - Sistema de Staff</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: #ffffff; /* Solid white background */
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: #f9f9f9; /* Slightly off-white for container */
+            border-radius: 8px; /* Slightly less rounded */
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            margin: 20px 0;
+            border: 1px solid #e0e0e0; /* Simple border */
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0; /* Simple border */
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2rem; /* Slightly smaller */
+            margin-bottom: 5px;
+            color: #333; /* Darker text */
+            text-shadow: none; /* No text shadow */
+        }
+        
+        .header p {
+            font-size: 1rem; /* Slightly smaller */
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .omesagisto-badge {
+            display: inline-block;
+            background: #607d8b; /* Neutral blue-gray */
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px; /* More subtle rounding */
+            font-size: 0.8rem;
+            margin-top: 5px;
+            font-weight: 500;
+            box-shadow: none; /* No shadow */
+        }
+        
+        .form-group {
+            margin-bottom: 18px; /* Slightly less space */
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500; /* Normal weight */
+            font-size: 0.95rem;
+            color: #444;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-group label i {
+            margin-right: 8px;
+            color: #607d8b; /* Neutral blue-gray */
+            width: 20px; /* Slightly smaller icon area */
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px; /* Slightly less padding */
+            background: #ffffff;
+            border: 1px solid #cccccc; /* Simple border */
+            border-radius: 6px; /* Less rounded */
+            color: #333;
+            font-size: 0.95rem;
+            transition: border-color 0.2s; /* Simpler transition */
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #607d8b; /* Accent color on focus */
+            background: #fff;
+            box-shadow: none; /* No shadow on focus */
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 15px; /* Slightly less gap */
+            margin-top: 6px;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .radio-group input[type="radio"] {
+            width: 16px; /* Slightly smaller */
+            height: 16px;
+            accent-color: #607d8b; /* Neutral accent color */
+        }
+        
+        textarea.form-control {
+            min-height: 100px; /* Slightly smaller height */
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 5px;
+            align-items: flex-start;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+            accent-color: #607d8b;
+            width: 16px;
+            height: 16px;
+        }
+        
+        .btn-submit {
+            background: #4caf50; /* Green submit button */
+            color: white;
+            border: none;
+            padding: 12px; /* Less padding */
+            border-radius: 6px; /* Less rounded */
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s; /* Simpler transition */
+            margin-top: 15px;
+            box-shadow: none; /* No shadow */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-submit:hover {
+            background: #43a047; /* Darker green on hover */
+            transform: none; /* No transform */
+            box-shadow: none; /* No shadow */
+        }
+        
+        .btn-submit:active {
+            transform: none; /* No transform */
+        }
+        
+        .btn-submit i {
+            margin-right: 8px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .discord-icon {
+            text-align: center;
+            margin-bottom: 10px; /* Less space */
+            color: #7289DA; /* Standard Discord blue */
+            font-size: 3rem; /* Slightly smaller */
+            text-shadow: none; /* No shadow */
+        }
+        
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4); /* Slightly lighter overlay */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: none;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 30px; /* Less padding */
+            border-radius: 8px; /* Less rounded */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Softer shadow */
+            max-width: 400px; /* Slightly smaller */
+            text-align: center;
+            position: relative;
+            animation: modalAppear 0.3s ease-out; /* Faster animation */
+        }
+        
+        @keyframes modalAppear {
+            from { opacity: 0; transform: translateY(-20px); } /* Less movement */
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-content .close-button {
+            position: absolute;
+            top: 10px; /* Closer to top */
+            right: 15px; /* Closer to right */
+            color: #aaa;
+            font-size: 24px; /* Slightly smaller */
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s; /* Faster transition */
+        }
+
+        .modal-content .close-button:hover {
+            color: #607d8b; /* Neutral accent on hover */
+        }
+
+        .modal-content i {
+            font-size: 3.5rem; /* Slightly smaller */
+            color: #4caf50; /* Green for success icon */
+            margin-bottom: 15px;
+        }
+
+        .modal-content h3 {
+            font-size: 1.6rem; /* Slightly smaller */
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8); /* Lighter background */
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #607d8b; /* Neutral blue-gray */
+            font-size: 1.2rem; /* Slightly smaller */
+            font-weight: 500;
+            backdrop-filter: blur(3px); /* Less blur */
+        }
+        
+        .loading-overlay i {
+            font-size: 3.5rem; /* Slightly smaller */
+            margin-bottom: 15px;
+            animation: spin 1.2s linear infinite; /* Faster spin */
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0; /* Simple border */
+        }
+        
+        .admin-header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            color: #333;
+            text-shadow: none;
+        }
+        
+        .admin-header p {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .admin-header i {
+            font-size: 3rem;
+            color: #607d8b; /* Neutral blue-gray */
+            margin-bottom: 10px;
+            text-shadow: none;
+        }
+
+        .application-list {
+            display: grid;
+            gap: 20px; /* Slightly less gap */
+        }
+
+        .application-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px; /* Less padding */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            transition: transform 0.2s, box-shadow 0.2s; /* Simpler transition */
+        }
+        
+        .application-card:hover {
+            transform: translateY(-2px); /* Less movement */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+        }
+
+        .application-card h2 {
+            color: #333; /* Darker text */
+            margin-bottom: 10px;
+            font-size: 1.4rem; /* Slightly smaller */
+            display: flex;
+            align-items: center;
+        }
+
+        .application-card h2 i {
+            margin-right: 10px;
+            color: #607d8b; /* Neutral blue-gray */
+        }
+        
+        .application-card p {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .application-card p strong {
+            color: #555;
+            display: inline-block;
+            width: 150px; /* Adjusted width */
+        }
+
+        .application-card .reason-text {
+            background: #f5f5f5; /* Lighter background */
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            margin-top: 8px;
+            font-style: italic;
+            line-height: 1.4;
+            color: #555;
+        }
+        
+        .timestamp {
+            font-size: 0.8rem;
+            color: #888;
+            text-align: right;
+            margin-top: 8px;
+            font-style: normal; /* Not italic */
+        }
+
+        .no-applications {
+            text-align: center;
+            color: #888;
+            font-size: 1.1rem;
+            padding: 40px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+            gap: 10px; /* Less gap */
+            background: #e0e0e0; /* Lighter tab background */
+            padding: 10px; /* Less padding */
+            border-radius: 8px; /* Less rounded */
+            box-shadow: none; /* No shadow */
+        }
+        
+        .tab-btn {
+            padding: 10px 20px; /* Less padding */
+            background: #f0f0f0; /* Lighter default tab */
+            border: none;
+            border-radius: 6px; /* Less rounded */
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .tab-btn:hover {
+            background: #e5e5e5; /* Subtle hover */
+        }
+        
+        .tab-btn.active {
+            background: #607d8b; /* Neutral blue-gray for active */
+            color: white;
+            box-shadow: none; /* No shadow */
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease; /* Faster fade */
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .login-container {
+            max-width: 350px; /* Smaller */
+            margin: 0 auto;
+            padding: 25px; /* Less padding */
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Less gap */
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .login-header h2 {
+            color: #333;
+            font-size: 1.6rem;
+        }
+        
+        .login-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .logout-btn {
+            background: #f44336; /* Red for logout */
+            color: white;
+            border: none;
+            padding: 8px 15px; /* Less padding */
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: auto;
+        }
+        
+        .logout-btn:hover {
+            background: #d32f2f; /* Darker red on hover */
+            transform: none;
+        }
+        
+        .admin-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
+        
+        .admin-panel {
+            display: none;
+        }
+        
+        .admin-panel.active {
+            display: block;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px; /* Less padding */
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* Softer shadow */
+            z-index: 10000;
+            animation: slideIn 0.2s ease, fadeOut 0.4s ease 2.5s forwards; /* Faster animations */
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .notification.success {
+            background: #4caf50; /* Green for success */
+        }
+        
+        .notification.error {
+            background: #f44336; /* Red for error */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="form">
+                <i class="fas fa-file-alt"></i> Formulário
+            </button>
+            <button class="tab-btn" data-tab="admin" id="adminTabBtn">
+                <i class="fas fa-user-shield"></i> Painel Admin
+            </button>
+        </div>
+        
+        <div id="formTab" class="tab-content active">
+            <div class="header">
+                <div class="discord-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h1>STAFF APPLICATION</h1>
+                <p>Servidor do OMESAGISTO</p>
+                <span class="omesagisto-badge">YOUTUBER</span>
+            </div>
+            
+            <form id="staffForm">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Nome</label>
+                    <input type="text" id="name" class="form-control" required placeholder="Seu nome completo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age"><i class="fas fa-birthday-cake"></i> Idade</label>
+                    <input type="number" id="age" class="form-control" required min="13" placeholder="Sua idade">
+                </div>
+                
+                <div class="form-group">
+                    <label for="discord"><i class="fab fa-discord"></i> Discord (Tag + ID)</label>
+                    <input type="text" id="discord" class="form-control" required placeholder="ex: OMESAGISTO#0001">
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-briefcase"></i> Ja foi staff antes?</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="experience" value="Sim" required> Sim
+                        </label>
+                        <label>
+                            <input type="radio" name="experience" value="Não"> Nao
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hours"><i class="fas fa-clock"></i> Horas disponíveis por dia</label>
+                    <select id="hours" class="form-control" required>
+                        <option value="">Selecione...</option>
+                        <option value="1-2 horas">1-2 horas</option>
+                        <option value="3-4 horas">3-4 horas</option>
+                        <option value="5+ horas">5+ horas</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason"><i class="fas fa-comment-alt"></i> Por que quer ser staff aqui?</label>
+                    <textarea id="reason" class="form-control" required placeholder="Conte por que você seria uma boa adição à equipe..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" required>
+                            <span>Concordo com as regras e me comprometo com o servidor</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-paper-plane"></i> ENVIAR APLICAÇÃO
+                </button>
+            </form>
+            
+            <div class="footer">
+                <p>Respostas serão avaliadas pela equipe do OMESAGISTO</p>
+            </div>
+        </div>
+        
+        <div id="adminTab" class="tab-content">
+            <div class="admin-header">
+                <i class="fas fa-user-shield"></i>
+                <h1>PAINEL ADMINISTRATIVO</h1>
+                <p>Visualizar Aplicações para Staff - OMESAGISTO</p>
+            </div>
+            
+            <div id="loginPanel">
+                <div class="login-container">
+                    <div class="login-header">
+                        <h2>Acesso Restrito</h2>
+                        <p>Somente para administradores</p>
+                    </div>
+                    <form id="adminLoginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="adminPass"><i class="fas fa-lock"></i> Senha de Administrador</label>
+                            <input type="password" id="adminPass" class="form-control" required placeholder="Digite a senha">
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-sign-in-alt"></i> ACESSAR PAINEL
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div id="adminPanel" class="admin-panel">
+                <div class="admin-actions">
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+                
+                <div id="applicationList" class="application-list">
+                    </div>
+
+                <div id="noApplications" class="no-applications" style="display: none;">
+                    <p>Nenhuma aplicação encontrada.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <i class="fas fa-check-circle"></i>
+            <h3>Aplicação Enviada com Sucesso!</h3>
+            <p>A equipe do OMESAGISTO irá analisar seu formulário em breve.</p>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <i class="fas fa-spinner"></i>
+        <span>Enviando aplicação...</span>
+    </div>
+    
+    <script>
+        // Simular o Firebase usando localStorage
+        const storageKey = 'omesagistoStaffApplications';
+        const adminPassKey = 'adminPassword';
+        
+        // Funções para mostrar e esconder modais
+        function showModal(modalElement) {
+            modalElement.style.display = 'flex';
+        }
+
+        function hideModal(modalElement) {
+            modalElement.style.display = 'none';
+        }
+        
+        // Sistema de abas
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover classe ativa de todos os botões e conteúdos
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Adicionar classe ativa ao botão clicado
+                btn.classList.add('active');
+                
+                // Mostrar o conteúdo correspondente
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(`${tabId}Tab`).classList.add('active');
+                
+                // Se for o painel administrativo, resetar o login
+                if (tabId === 'admin') {
+                    document.getElementById('adminPanel').classList.remove('active');
+                    document.getElementById('loginPanel').style.display = 'block';
+                }
+            });
+        });
+        
+        // Função para mostrar notificação
+        function showNotification(message, isSuccess) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Carregar aplicações do localStorage
+        function loadApplications() {
+            const applicationListDiv = document.getElementById('applicationList');
+            const noApplicationsDiv = document.getElementById('noApplications');
+            
+            // Limpar lista atual
+            applicationListDiv.innerHTML = '';
+            
+            // Obter aplicações do localStorage
+            const applications = JSON.parse(localStorage.getItem(storageKey)) || [];
+            
+            if (applications.length === 0) {
+                applicationListDiv.style.display = 'none';
+                noApplicationsDiv.style.display = 'block';
+            } else {
+                applicationListDiv.style.display = 'grid';
+                noApplicationsDiv.style.display = 'none';
+                
+                // Ordenar por data (mais recente primeiro)
+                applications.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                applications.forEach(app => {
+                    const card = document.createElement('div');
+                    card.classList.add('application-card');
+                    
+                    // Formatar data para exibição
+                    const date = new Date(app.timestamp);
+                    const formattedDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} às ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+                    
+                    card.innerHTML = `
+                        <h2><i class="fas fa-file-alt"></i> Aplicação de ${app.name}</h2>
+                        <p><strong>Nome:</strong> ${app.name}</p>
+                        <p><strong>Idade:</strong> ${app.age}</p>
+                        <p><strong>Discord:</strong> ${app.discord}</p>
+                        <p><strong>Já foi staff:</strong> ${app.experience}</p>
+                        <p><strong>Horas disponíveis:</strong> ${app.hours}</p>
+                        <p><strong>Motivo:</strong></p>
+                        <div class="reason-text">${app.reason}</div>
+                        <div class="timestamp">Enviado em: ${formattedDate}</div>
+                    `;
+                    applicationListDiv.appendChild(card);
+                });
+            }
+        }
+        
+        // Formulário de envio
+        const staffForm = document.getElementById('staffForm');
+        const successModal = document.getElementById('successModal');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const closeButton = document.querySelector('#successModal .close-button');
+        
+        staffForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Mostrar loading
+            showModal(loadingOverlay);
+            
+            // Simular envio com timeout
+            setTimeout(() => {
+                // Coletar dados do formulário
+                const formData = {
+                    name: document.getElementById('name').value,
+                    age: parseInt(document.getElementById('age').value),
+                    discord: document.getElementById('discord').value,
+                    experience: document.querySelector('input[name="experience"]:checked').value,
+                    hours: document.getElementById('hours').value,
+                    reason: document.getElementById('reason').value,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Obter aplicações existentes do localStorage
+                const existingApplications = JSON.parse(localStorage.getItem(storageKey)) || [];
+                
+                // Adicionar nova aplicação
+                existingApplications.push(formData);
+                
+                // Salvar no localStorage
+                localStorage.setItem(storageKey, JSON.stringify(existingApplications));
+                
+                // Esconder loading
+                hideModal(loadingOverlay);
+                
+                // Mostrar modal de sucesso
+                showModal(successModal);
+                
+                // Resetar formulário
+                staffForm.reset();
+            }, 1500);
+        });
+        
+        // Fechar modal
+        closeButton.addEventListener('click', () => {
+            hideModal(successModal);
+        });
+        
+        // Fechar modal ao clicar fora
+        window.addEventListener('click', (event) => {
+            if (event.target === successModal) {
+                hideModal(successModal);
+            }
+        });
+        
+        // Sistema de login para administradores
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const loginPanel = document.getElementById('loginPanel');
+        const adminPanel = document.getElementById('adminPanel');
+        const logoutBtn = document.getElementById('logoutBtn');
+        
+        // Configurar senha padrão na primeira execução
+        if (!localStorage.getItem(adminPassKey)) {
+            localStorage.setItem(adminPassKey, 'omesagisto123');
+        }
+        
+        adminLoginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const passwordInput = document.getElementById('adminPass').value;
+            const correctPassword = localStorage.getItem(adminPassKey);
+            
+            if (passwordInput === correctPassword) {
+                // Login bem-sucedido
+                loginPanel.style.display = 'none';
+                adminPanel.classList.add('active');
+                loadApplications();
+                showNotification('Login realizado com sucesso!', true);
+            } else {
+                // Senha incorreta
+                showNotification('Senha incorreta. Tente novamente.', false);
+                document.getElementById('adminPass').value = '';
+            }
+        });
+        
+        // Botão de logout
+        logoutBtn.addEventListener('click', () => {
+            adminPanel.classList.remove('active');
+            loginPanel.style.display = 'block';
+            document.getElementById('adminPass').value = '';
+            showNotification('Sessão encerrada com sucesso.', true);
+        });
+        
+        // Inicializar dados de exemplo se não existirem
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem(storageKey)) {
+                const initialApplications = [
+                    {
+                        name: "João Silva",
+                        age: 22,
+                        discord: "JoaoSilva#1234",
+                        experience: "Sim",
+                        hours: "3-4 horas",
+                        reason: "Gostaria de contribuir para a comunidade do OMESAGISTO, ajudando a manter a ordem e criar um ambiente positivo para todos os membros. Tenho experiência anterior como moderador em outros servidores de grande porte e sou bastante ativo no Discord.",
+                        timestamp: "2023-09-15T10:30:00Z"
+                    },
+                    {
+                        name: "Maria Oliveira",
+                        age: 18,
+                        discord: "MariaOli#5678",
+                        experience: "Não",
+                        hours: "1-2 horas",
+                        reason: "Sou fã do conteúdo do OMESAGISTO e adoraria fazer parte da equipe. Tenho bastante tempo livre à noite e nos fins de semana para dedicar ao servidor. Sou proativa e aprendo rápido.",
+                        timestamp: "2023-09-16T14:45:00Z"
+                    },
+                    {
+                        name: "Carlos Mendes",
+                        age: 25,
+                        discord: "CarlosM#9012",
+                        experience: "Sim",
+                        hours: "5+ horas",
+                        reason: "Trabalho como community manager e tenho experiência em lidar com comunidades grandes. Posso trazer essa expertise para ajudar a melhorar o servidor e criar uma experiência positiva para todos os membros.",
+                        timestamp: "2023-09-17T09:15:00Z"
+                    }
+                ];
+                localStorage.setItem(storageKey, JSON.stringify(initialApplications));
+            }
+        });
+    </script>
+</body>
+</html>
