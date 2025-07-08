@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMESAGISTO - Sistema de Staff</title>
+    <title>FORMULARIO PARA STAFF - OMESAGISTO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -535,7 +535,7 @@
     <div class="container">
         <div class="tabs">
             <button class="tab-btn active" data-tab="form">
-                <i class="fas fa-file-alt"></i> Formulário
+                <i class="fas fa-file-alt"></i> Formulario
             </button>
             <button class="tab-btn" data-tab="admin" id="adminTabBtn">
                 <i class="fas fa-user-shield"></i> Painel Admin
@@ -547,7 +547,7 @@
                 <div class="discord-icon">
                     <i class="fab fa-discord"></i>
                 </div>
-                <h1>STAFF APPLICATION</h1>
+                <h1>FORMULARIO PARA STAFF</h1>
                 <p>Servidor do OMESAGISTO</p>
                 <span class="omesagisto-badge">YOUTUBER</span>
             </div>
@@ -564,7 +564,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="discord"><i class="fab fa-discord"></i> Discord (Tag + ID)</label>
+                    <label for="discord"><i class="fab fa-discord"></i> Discord (Nick)</label>
                     <input type="text" id="discord" class="form-control" required placeholder="ex: OMESAGISTO#0001">
                 </div>
                 
@@ -575,13 +575,13 @@
                             <input type="radio" name="experience" value="Sim" required> Sim
                         </label>
                         <label>
-                            <input type="radio" name="experience" value="Não"> Nao
+                            <input type="radio" name="experience" value="NÃ£o"> Nao
                         </label>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="hours"><i class="fas fa-clock"></i> Horas disponíveis por dia</label>
+                    <label for="hours"><i class="fas fa-clock"></i> Horas disponÃ­veis por dia</label>
                     <select id="hours" class="form-control" required>
                         <option value="">Selecione...</option>
                         <option value="1-2 horas">1-2 horas</option>
@@ -592,7 +592,7 @@
                 
                 <div class="form-group">
                     <label for="reason"><i class="fas fa-comment-alt"></i> Por que quer ser staff aqui?</label>
-                    <textarea id="reason" class="form-control" required placeholder="Conte por que você seria uma boa adição à equipe..."></textarea>
+                    <textarea id="reason" class="form-control" required placeholder="Conte por que vocÃª seria uma boa adiÃ§Ã£o Ã  equipe..."></textarea>
                 </div>
                 
                 <div class="form-group">
@@ -605,12 +605,12 @@
                 </div>
                 
                 <button type="submit" class="btn-submit">
-                    <i class="fas fa-paper-plane"></i> ENVIAR APLICAÇÃO
+                    <i class="fas fa-paper-plane"></i> ENVIAR APLICACAO
                 </button>
             </form>
             
             <div class="footer">
-                <p>Respostas serão avaliadas pela equipe do OMESAGISTO</p>
+                <p>Respostas serao avaliadas pela equipe do OMESAGISTO</p>
             </div>
         </div>
         
@@ -618,7 +618,7 @@
             <div class="admin-header">
                 <i class="fas fa-user-shield"></i>
                 <h1>PAINEL ADMINISTRATIVO</h1>
-                <p>Visualizar Aplicações para Staff - OMESAGISTO</p>
+                <p>Visualizar Aplicacoes para Staff - OMESAGISTO</p>
             </div>
             
             <div id="loginPanel">
@@ -650,7 +650,7 @@
                     </div>
 
                 <div id="noApplications" class="no-applications" style="display: none;">
-                    <p>Nenhuma aplicação encontrada.</p>
+                    <p>Nenhuma aplicacao encontrada.</p>
                 </div>
             </div>
         </div>
@@ -660,14 +660,14 @@
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <i class="fas fa-check-circle"></i>
-            <h3>Aplicação Enviada com Sucesso!</h3>
-            <p>A equipe do OMESAGISTO irá analisar seu formulário em breve.</p>
+            <h3>AplicaÃ§Ã£o Enviada com Sucesso!</h3>
+            <p>A equipe do OMESAGISTO ira analisar seu formulario em breve.</p>
         </div>
     </div>
 
     <div id="loadingOverlay" class="loading-overlay">
         <i class="fas fa-spinner"></i>
-        <span>Enviando aplicação...</span>
+        <span>Enviando aplicacao...</span>
     </div>
     
     <script>
@@ -675,7 +675,7 @@
         const storageKey = 'omesagistoStaffApplications';
         const adminPassKey = 'adminPassword';
         
-        // Funções para mostrar e esconder modais
+        // FunÃ§Ãµes para mostrar e esconder modais
         function showModal(modalElement) {
             modalElement.style.display = 'flex';
         }
@@ -690,14 +690,14 @@
         
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remover classe ativa de todos os botões e conteúdos
+                // Remover classe ativa de todos os botÃµes e conteÃºdos
                 tabBtns.forEach(b => b.classList.remove('active'));
                 tabContents.forEach(c => c.classList.remove('active'));
                 
-                // Adicionar classe ativa ao botão clicado
+                // Adicionar classe ativa ao botÃ£o clicado
                 btn.classList.add('active');
                 
-                // Mostrar o conteúdo correspondente
+                // Mostrar o conteÃºdo correspondente
                 const tabId = btn.getAttribute('data-tab');
                 document.getElementById(`${tabId}Tab`).classList.add('active');
                 
@@ -709,20 +709,20 @@
             });
         });
         
-        // Função para mostrar notificação
+        // FunÃ§Ã£o para mostrar notificaÃ§Ã£o
         function showNotification(message, isSuccess) {
             const notification = document.createElement('div');
             notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
             notification.textContent = message;
             document.body.appendChild(notification);
             
-            // Remover após 3 segundos
+            // Remover apÃ³s 3 segundos
             setTimeout(() => {
                 notification.remove();
             }, 3000);
         }
         
-        // Carregar aplicações do localStorage
+        // Carregar aplicaÃ§Ãµes do localStorage
         function loadApplications() {
             const applicationListDiv = document.getElementById('applicationList');
             const noApplicationsDiv = document.getElementById('noApplications');
@@ -730,7 +730,7 @@
             // Limpar lista atual
             applicationListDiv.innerHTML = '';
             
-            // Obter aplicações do localStorage
+            // Obter aplicaÃ§Ãµes do localStorage
             const applications = JSON.parse(localStorage.getItem(storageKey)) || [];
             
             if (applications.length === 0) {
@@ -747,17 +747,17 @@
                     const card = document.createElement('div');
                     card.classList.add('application-card');
                     
-                    // Formatar data para exibição
+                    // Formatar data para exibiÃ§Ã£o
                     const date = new Date(app.timestamp);
-                    const formattedDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} às ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+                    const formattedDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} Ã s ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
                     
                     card.innerHTML = `
-                        <h2><i class="fas fa-file-alt"></i> Aplicação de ${app.name}</h2>
+                        <h2><i class="fas fa-file-alt"></i> AplicaÃ§Ã£o de ${app.name}</h2>
                         <p><strong>Nome:</strong> ${app.name}</p>
                         <p><strong>Idade:</strong> ${app.age}</p>
                         <p><strong>Discord:</strong> ${app.discord}</p>
-                        <p><strong>Já foi staff:</strong> ${app.experience}</p>
-                        <p><strong>Horas disponíveis:</strong> ${app.hours}</p>
+                        <p><strong>JÃ¡ foi staff:</strong> ${app.experience}</p>
+                        <p><strong>Horas disponÃ­veis:</strong> ${app.hours}</p>
                         <p><strong>Motivo:</strong></p>
                         <div class="reason-text">${app.reason}</div>
                         <div class="timestamp">Enviado em: ${formattedDate}</div>
@@ -767,7 +767,7 @@
             }
         }
         
-        // Formulário de envio
+        // FormulÃ¡rio de envio
         const staffForm = document.getElementById('staffForm');
         const successModal = document.getElementById('successModal');
         const loadingOverlay = document.getElementById('loadingOverlay');
@@ -781,7 +781,7 @@
             
             // Simular envio com timeout
             setTimeout(() => {
-                // Coletar dados do formulário
+                // Coletar dados do formulÃ¡rio
                 const formData = {
                     name: document.getElementById('name').value,
                     age: parseInt(document.getElementById('age').value),
@@ -792,10 +792,10 @@
                     timestamp: new Date().toISOString()
                 };
                 
-                // Obter aplicações existentes do localStorage
+                // Obter aplicaÃ§Ãµes existentes do localStorage
                 const existingApplications = JSON.parse(localStorage.getItem(storageKey)) || [];
                 
-                // Adicionar nova aplicação
+                // Adicionar nova aplicaÃ§Ã£o
                 existingApplications.push(formData);
                 
                 // Salvar no localStorage
@@ -807,7 +807,7 @@
                 // Mostrar modal de sucesso
                 showModal(successModal);
                 
-                // Resetar formulário
+                // Resetar formulÃ¡rio
                 staffForm.reset();
             }, 1500);
         });
@@ -830,7 +830,7 @@
         const adminPanel = document.getElementById('adminPanel');
         const logoutBtn = document.getElementById('logoutBtn');
         
-        // Configurar senha padrão na primeira execução
+        // Configurar senha padrÃ£o na primeira execuÃ§Ã£o
         if (!localStorage.getItem(adminPassKey)) {
             localStorage.setItem(adminPassKey, 'omesagisto123');
         }
@@ -854,46 +854,14 @@
             }
         });
         
-        // Botão de logout
+        // BotÃ£o de logout
         logoutBtn.addEventListener('click', () => {
             adminPanel.classList.remove('active');
             loginPanel.style.display = 'block';
             document.getElementById('adminPass').value = '';
-            showNotification('Sessão encerrada com sucesso.', true);
+            showNotification('SessÃ£o encerrada com sucesso.', true);
         });
         
-        // Inicializar dados de exemplo se não existirem
-        document.addEventListener('DOMContentLoaded', () => {
-            if (!localStorage.getItem(storageKey)) {
-                const initialApplications = [
-                    {
-                        name: "João Silva",
-                        age: 22,
-                        discord: "JoaoSilva#1234",
-                        experience: "Sim",
-                        hours: "3-4 horas",
-                        reason: "Gostaria de contribuir para a comunidade do OMESAGISTO, ajudando a manter a ordem e criar um ambiente positivo para todos os membros. Tenho experiência anterior como moderador em outros servidores de grande porte e sou bastante ativo no Discord.",
-                        timestamp: "2023-09-15T10:30:00Z"
-                    },
-                    {
-                        name: "Maria Oliveira",
-                        age: 18,
-                        discord: "MariaOli#5678",
-                        experience: "Não",
-                        hours: "1-2 horas",
-                        reason: "Sou fã do conteúdo do OMESAGISTO e adoraria fazer parte da equipe. Tenho bastante tempo livre à noite e nos fins de semana para dedicar ao servidor. Sou proativa e aprendo rápido.",
-                        timestamp: "2023-09-16T14:45:00Z"
-                    },
-                    {
-                        name: "Carlos Mendes",
-                        age: 25,
-                        discord: "CarlosM#9012",
-                        experience: "Sim",
-                        hours: "5+ horas",
-                        reason: "Trabalho como community manager e tenho experiência em lidar com comunidades grandes. Posso trazer essa expertise para ajudar a melhorar o servidor e criar uma experiência positiva para todos os membros.",
-                        timestamp: "2023-09-17T09:15:00Z"
-                    }
-                ];
                 localStorage.setItem(storageKey, JSON.stringify(initialApplications));
             }
         });
