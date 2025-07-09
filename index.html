@@ -15,67 +15,68 @@
         }
         
         body {
-            background: #ffffff; /* Solid white background */
+            background: #f5f7fa; /* Cor de fundo do index (4).html */
             color: #333;
             min-height: 100vh;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative; /* Adicionado para o crédito do desenvolvedor, se for adicionado novamente */
         }
         
         .container {
             width: 100%;
             max-width: 900px;
-            background: #f9f9f9; /* Slightly off-white for container */
-            border-radius: 8px; /* Slightly less rounded */
+            background: #ffffff; /* Cor de fundo do container do index (4).html */
+            border-radius: 8px;
             padding: 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra do index (4).html */
             margin: 20px 0;
-            border: 1px solid #e0e0e0; /* Simple border */
+            border: 1px solid #e0e0e0;
         }
         
         .header {
             text-align: center;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #e0e0e0; /* Simple border */
+            border-bottom: 1px solid #e0e0e0;
             position: relative;
         }
         
         .header h1 {
-            font-size: 2rem; /* Slightly smaller */
+            font-size: 2.2rem; /* Tamanho da fonte do index (4).html */
             margin-bottom: 5px;
-            color: #333; /* Darker text */
-            text-shadow: none; /* No text shadow */
+            color: #2c3e50; /* Cor do texto do index (4).html */
+            text-shadow: none;
         }
         
         .header p {
-            font-size: 1rem; /* Slightly smaller */
+            font-size: 1rem;
             color: #666;
             margin-bottom: 8px;
         }
         
         .omesagisto-badge {
             display: inline-block;
-            background: #607d8b; /* Neutral blue-gray */
+            background: #3f51b5; /* Cor do badge do index (4).html */
             color: white;
             padding: 4px 12px;
-            border-radius: 20px; /* More subtle rounding */
+            border-radius: 20px;
             font-size: 0.8rem;
             margin-top: 5px;
             font-weight: 500;
-            box-shadow: none; /* No shadow */
+            box-shadow: none;
         }
         
         .form-group {
-            margin-bottom: 18px; /* Slightly less space */
+            margin-bottom: 18px;
         }
         
         .form-group label {
             display: block;
             margin-bottom: 6px;
-            font-weight: 500; /* Normal weight */
+            font-weight: 500;
             font-size: 0.95rem;
             color: #444;
             display: flex;
@@ -84,31 +85,31 @@
         
         .form-group label i {
             margin-right: 8px;
-            color: #607d8b; /* Neutral blue-gray */
-            width: 20px; /* Slightly smaller icon area */
+            color: #3f51b5; /* Cor do ícone do index (4).html */
+            width: 20px;
         }
         
         .form-control {
             width: 100%;
-            padding: 12px; /* Slightly less padding */
+            padding: 12px;
             background: #ffffff;
-            border: 1px solid #cccccc; /* Simple border */
-            border-radius: 6px; /* Less rounded */
+            border: 1px solid #cccccc;
+            border-radius: 6px;
             color: #333;
             font-size: 0.95rem;
-            transition: border-color 0.2s; /* Simpler transition */
+            transition: border-color 0.2s;
         }
         
         .form-control:focus {
             outline: none;
-            border-color: #607d8b; /* Accent color on focus */
+            border-color: #3f51b5; /* Cor de foco do index (4).html */
             background: #fff;
-            box-shadow: none; /* No shadow on focus */
+            box-shadow: none;
         }
         
         .radio-group {
             display: flex;
-            gap: 15px; /* Slightly less gap */
+            gap: 15px;
             margin-top: 6px;
         }
         
@@ -122,13 +123,13 @@
         }
         
         .radio-group input[type="radio"] {
-            width: 16px; /* Slightly smaller */
+            width: 16px;
             height: 16px;
-            accent-color: #607d8b; /* Neutral accent color */
+            accent-color: #3f51b5; /* Cor do rádio button do index (4).html */
         }
         
         textarea.form-control {
-            min-height: 100px; /* Slightly smaller height */
+            min-height: 100px;
             resize: vertical;
         }
         
@@ -141,36 +142,36 @@
         
         .checkbox-group input[type="checkbox"] {
             margin-top: 3px;
-            accent-color: #607d8b;
+            accent-color: #3f51b5; /* Cor do checkbox do index (4).html */
             width: 16px;
             height: 16px;
         }
         
         .btn-submit {
-            background: #4caf50; /* Green submit button */
+            background: #3f51b5; /* Cor do botão de envio do index (4).html */
             color: white;
             border: none;
-            padding: 12px; /* Less padding */
-            border-radius: 6px; /* Less rounded */
+            padding: 12px;
+            border-radius: 6px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.2s; /* Simpler transition */
+            transition: background-color 0.2s;
             margin-top: 15px;
-            box-shadow: none; /* No shadow */
+            box-shadow: none;
             position: relative;
             overflow: hidden;
         }
         
         .btn-submit:hover {
-            background: #43a047; /* Darker green on hover */
-            transform: none; /* No transform */
-            box-shadow: none; /* No shadow */
+            background: #303f9f; /* Cor do hover do botão de envio do index (4).html */
+            transform: none;
+            box-shadow: none;
         }
         
         .btn-submit:active {
-            transform: none; /* No transform */
+            transform: none;
         }
         
         .btn-submit i {
@@ -186,10 +187,10 @@
         
         .discord-icon {
             text-align: center;
-            margin-bottom: 10px; /* Less space */
-            color: #7289DA; /* Standard Discord blue */
-            font-size: 3rem; /* Slightly smaller */
-            text-shadow: none; /* No shadow */
+            margin-bottom: 10px;
+            color: #7289DA; /* Cor do ícone do Discord do index (4).html */
+            font-size: 3rem;
+            text-shadow: none;
         }
         
         .modal {
@@ -200,7 +201,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4); /* Slightly lighter overlay */
+            background-color: rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -210,43 +211,43 @@
         .modal-content {
             background-color: #fff;
             margin: auto;
-            padding: 30px; /* Less padding */
-            border-radius: 8px; /* Less rounded */
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Softer shadow */
-            max-width: 400px; /* Slightly smaller */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 400px;
             text-align: center;
             position: relative;
-            animation: modalAppear 0.3s ease-out; /* Faster animation */
+            animation: modalAppear 0.3s ease-out;
         }
         
         @keyframes modalAppear {
-            from { opacity: 0; transform: translateY(-20px); } /* Less movement */
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-content .close-button {
             position: absolute;
-            top: 10px; /* Closer to top */
-            right: 15px; /* Closer to right */
+            top: 10px;
+            right: 15px;
             color: #aaa;
-            font-size: 24px; /* Slightly smaller */
+            font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            transition: color 0.2s; /* Faster transition */
+            transition: color 0.2s;
         }
 
         .modal-content .close-button:hover {
-            color: #607d8b; /* Neutral accent on hover */
+            color: #3f51b5; /* Cor do botão de fechar modal no hover do index (4).html */
         }
 
         .modal-content i {
-            font-size: 3.5rem; /* Slightly smaller */
-            color: #4caf50; /* Green for success icon */
+            font-size: 3.5rem;
+            color: #4caf50; /* Cor do ícone de sucesso do index (4).html */
             margin-bottom: 15px;
         }
 
         .modal-content h3 {
-            font-size: 1.6rem; /* Slightly smaller */
+            font-size: 1.6rem;
             margin-bottom: 10px;
             color: #333;
         }
@@ -265,21 +266,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.8); /* Lighter background */
+            background: rgba(255, 255, 255, 0.8);
             z-index: 1001;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            color: #607d8b; /* Neutral blue-gray */
-            font-size: 1.2rem; /* Slightly smaller */
+            color: #3f51b5; /* Cor do loading do index (4).html */
+            font-size: 1.2rem;
             font-weight: 500;
-            backdrop-filter: blur(3px); /* Less blur */
+            backdrop-filter: blur(3px);
         }
         
         .loading-overlay i {
-            font-size: 3.5rem; /* Slightly smaller */
+            font-size: 3.5rem;
             margin-bottom: 15px;
-            animation: spin 1.2s linear infinite; /* Faster spin */
+            animation: spin 1.2s linear infinite;
         }
         
         @keyframes spin {
@@ -291,14 +292,13 @@
             text-align: center;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px solid #e0e0e0; /* Simple border */
+            border-bottom: 1px solid #e0e0e0;
         }
         
         .admin-header h1 {
-            font-size: 2rem;
+            font-size: 2.1rem; /* Tamanho da fonte do index (4).html */
             margin-bottom: 5px;
-            color: #333;
-            text-shadow: none;
+            color: #2c3e50; /* Cor do texto do index (4).html */
         }
         
         .admin-header p {
@@ -308,41 +308,41 @@
         
         .admin-header i {
             font-size: 3rem;
-            color: #607d8b; /* Neutral blue-gray */
+            color: #3f51b5; /* Cor do ícone de admin do index (4).html */
             margin-bottom: 10px;
             text-shadow: none;
         }
 
         .application-list {
             display: grid;
-            gap: 20px; /* Slightly less gap */
+            gap: 20px;
         }
 
         .application-card {
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            padding: 20px; /* Less padding */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Softer shadow */
-            transition: transform 0.2s, box-shadow 0.2s; /* Simpler transition */
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         
         .application-card:hover {
-            transform: translateY(-2px); /* Less movement */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .application-card h2 {
-            color: #333; /* Darker text */
+            color: #2c3e50; /* Cor do texto do index (4).html */
             margin-bottom: 10px;
-            font-size: 1.4rem; /* Slightly smaller */
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
         }
 
         .application-card h2 i {
             margin-right: 10px;
-            color: #607d8b; /* Neutral blue-gray */
+            color: #3f51b5; /* Cor do ícone do card de aplicação do index (4).html */
         }
         
         .application-card p {
@@ -354,11 +354,11 @@
         .application-card p strong {
             color: #555;
             display: inline-block;
-            width: 150px; /* Adjusted width */
+            width: 150px;
         }
 
         .application-card .reason-text {
-            background: #f5f5f5; /* Lighter background */
+            background: #f5f5f5;
             padding: 12px;
             border-radius: 6px;
             border: 1px solid #e0e0e0;
@@ -373,7 +373,7 @@
             color: #888;
             text-align: right;
             margin-top: 8px;
-            font-style: normal; /* Not italic */
+            font-style: normal;
         }
 
         .no-applications {
@@ -387,18 +387,18 @@
             display: flex;
             justify-content: center;
             margin-bottom: 25px;
-            gap: 10px; /* Less gap */
-            background: #e0e0e0; /* Lighter tab background */
-            padding: 10px; /* Less padding */
-            border-radius: 8px; /* Less rounded */
-            box-shadow: none; /* No shadow */
+            gap: 10px;
+            background: #e0e0e0;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: none;
         }
         
         .tab-btn {
-            padding: 10px 20px; /* Less padding */
-            background: #f0f0f0; /* Lighter default tab */
+            padding: 10px 20px;
+            background: #f0f0f0;
             border: none;
-            border-radius: 6px; /* Less rounded */
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.2s;
@@ -409,18 +409,18 @@
         }
         
         .tab-btn:hover {
-            background: #e5e5e5; /* Subtle hover */
+            background: #e5e5e5;
         }
         
         .tab-btn.active {
-            background: #607d8b; /* Neutral blue-gray for active */
+            background: #3f51b5; /* Cor da aba ativa do index (4).html */
             color: white;
-            box-shadow: none; /* No shadow */
+            box-shadow: none;
         }
         
         .tab-content {
             display: none;
-            animation: fadeIn 0.3s ease; /* Faster fade */
+            animation: fadeIn 0.3s ease;
         }
         
         @keyframes fadeIn {
@@ -433,9 +433,9 @@
         }
         
         .login-container {
-            max-width: 350px; /* Smaller */
+            max-width: 350px;
             margin: 0 auto;
-            padding: 25px; /* Less padding */
+            padding: 25px;
             background: #ffffff;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -445,7 +445,7 @@
         .login-form {
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Less gap */
+            gap: 15px;
         }
         
         .login-header {
@@ -465,10 +465,10 @@
         }
         
         .logout-btn {
-            background: #f44336; /* Red for logout */
+            background: #e53935; /* Cor do botão de logout do index (4).html */
             color: white;
             border: none;
-            padding: 8px 15px; /* Less padding */
+            padding: 8px 15px;
             border-radius: 6px;
             font-weight: 500;
             cursor: pointer;
@@ -481,7 +481,7 @@
         }
         
         .logout-btn:hover {
-            background: #d32f2f; /* Darker red on hover */
+            background: #c62828; /* Cor do hover do botão de logout do index (4).html */
             transform: none;
         }
         
@@ -503,13 +503,13 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 12px 20px; /* Less padding */
+            padding: 12px 20px;
             border-radius: 6px;
             color: white;
             font-weight: 500;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* Softer shadow */
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             z-index: 10000;
-            animation: slideIn 0.2s ease, fadeOut 0.4s ease 2.5s forwards; /* Faster animations */
+            animation: slideIn 0.2s ease, fadeOut 0.4s ease 2.5s forwards;
         }
         
         @keyframes slideIn {
@@ -523,11 +523,11 @@
         }
         
         .notification.success {
-            background: #4caf50; /* Green for success */
+            background: #4caf50; /* Cor de sucesso do index (4).html */
         }
         
         .notification.error {
-            background: #f44336; /* Red for error */
+            background: #f44336; /* Cor de erro do index (4).html */
         }
     </style>
 </head>
@@ -675,7 +675,7 @@
         const storageKey = 'omesagistoStaffApplications';
         const adminPassKey = 'adminPassword';
         
-        // NOVO: Inicializar applications array se não existir no localStorage
+        // Inicializar applications array se não existir no localStorage
         if (!localStorage.getItem(storageKey)) {
             localStorage.setItem(storageKey, JSON.stringify([]));
         }
