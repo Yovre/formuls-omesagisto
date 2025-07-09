@@ -675,6 +675,16 @@
         const storageKey = 'omesagistoStaffApplications';
         const adminPassKey = 'adminPassword';
         
+        // NOVO: Inicializar applications array se não existir no localStorage
+        if (!localStorage.getItem(storageKey)) {
+            localStorage.setItem(storageKey, JSON.stringify([]));
+        }
+
+        // Configurar senha padrão na primeira execução
+        if (!localStorage.getItem(adminPassKey)) {
+            localStorage.setItem(adminPassKey, 'omesagisto123');
+        }
+        
         // Funções para mostrar e esconder modais
         function showModal(modalElement) {
             modalElement.style.display = 'flex';
