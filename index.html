@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAINEL ADMINISTRATIVO - OMESAGISTO</title>
+    <title>FORMULARIO PARA STAFF - OMESAGISTO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -22,18 +22,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative; /* Necessário para posicionar o crédito de desenvolvedor */
         }
         
-        .developer-credit {
-            position: fixed; /* Fixado para ficar sempre visível */
-            top: 10px;
-            left: 10px;
-            font-size: 0.8rem;
-            color: #888;
-            z-index: 10000; /* Garante que fique acima de outros elementos */
-        }
-
         .container {
             width: 100%;
             max-width: 900px;
@@ -539,68 +529,92 @@
         .notification.error {
             background: #f44336; /* Red for error */
         }
-
-        /* Novas classes para os botões de ação e cartão de aplicação aprovada */
-        .admin-app-actions {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
-        .btn-approve {
-            background: #28a745; /* Green for approve */
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background-color 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .btn-approve:hover {
-            background: #218838;
-        }
-        .btn-approve[disabled] {
-            background-color: #cccccc;
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-        .btn-approve[disabled]:hover {
-            background-color: #cccccc;
-        }
-        .btn-delete {
-            background: #dc3545; /* Red for delete */
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background-color 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .btn-delete:hover {
-            background: #c82333;
-        }
-        
-        .application-card.approved-card {
-            border-left: 5px solid #28a745; /* Green border on the left */
-            background-color: #e6ffe6; /* Very light green background */
-        }
     </style>
 </head>
 <body>
-    <div class="developer-credit">Desenvolvido por Yovree</div>
-
     <div class="container">
-        <div id="adminTab" class="tab-content active">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="form">
+                <i class="fas fa-file-alt"></i> Formulario
+            </button>
+            <button class="tab-btn" data-tab="admin" id="adminTabBtn">
+                <i class="fas fa-user-shield"></i> Painel Admin
+            </button>
+        </div>
+        
+        <div id="formTab" class="tab-content active">
+            <div class="header">
+                <div class="discord-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h1>FORMULARIO PARA STAFF</h1>
+                <p>Servidor do OMESAGISTO</p>
+                <span class="omesagisto-badge">YOUTUBER</span>
+            </div>
+            
+            <form id="staffForm">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Nome</label>
+                    <input type="text" id="name" class="form-control" required placeholder="Seu nome completo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age"><i class="fas fa-birthday-cake"></i> Idade</label>
+                    <input type="number" id="age" class="form-control" required min="13" placeholder="Sua idade">
+                </div>
+                
+                <div class="form-group">
+                    <label for="discord"><i class="fab fa-discord"></i> Discord (Nick)</label>
+                    <input type="text" id="discord" class="form-control" required placeholder="ex: OMESAGISTO#0001">
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-briefcase"></i> Ja foi staff antes?</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="experience" value="Sim" required> Sim
+                        </label>
+                        <label>
+                            <input type="radio" name="experience" value="Não"> Nao
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hours"><i class="fas fa-clock"></i> Horas disponíveis por dia</label>
+                    <select id="hours" class="form-control" required>
+                        <option value="">Selecione...</option>
+                        <option value="1-2 horas">1-2 horas</option>
+                        <option value="3-4 horas">3-4 horas</option>
+                        <option value="5+ horas">5+ horas</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason"><i class="fas fa-comment-alt"></i> Por que quer ser staff aqui?</label>
+                    <textarea id="reason" class="form-control" required placeholder="Conte por que você seria uma boa adição à equipe..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" required>
+                            <span>Concordo com as regras e me comprometo com o servidor</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-paper-plane"></i> ENVIAR APLICACAO
+                </button>
+            </form>
+            
+            <div class="footer">
+                <p>Respostas serao avaliadas pela equipe do OMESAGISTO</p>
+            </div>
+        </div>
+        
+        <div id="adminTab" class="tab-content">
             <div class="admin-header">
                 <i class="fas fa-user-shield"></i>
                 <h1>PAINEL ADMINISTRATIVO</h1>
@@ -642,12 +656,26 @@
         </div>
     </div>
 
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <i class="fas fa-check-circle"></i>
+            <h3>Aplicação Enviada com Sucesso!</h3>
+            <p>A equipe do OMESAGISTO ira analisar seu formulario em breve.</p>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <i class="fas fa-spinner"></i>
+        <span>Enviando aplicacao...</span>
+    </div>
+    
     <script>
         // Simular o Firebase usando localStorage
         const storageKey = 'omesagistoStaffApplications';
         const adminPassKey = 'adminPassword';
         
-        // Inicializar applications array se não existir no localStorage
+        // NOVO: Inicializar applications array se não existir no localStorage
         if (!localStorage.getItem(storageKey)) {
             localStorage.setItem(storageKey, JSON.stringify([]));
         }
@@ -657,7 +685,7 @@
             localStorage.setItem(adminPassKey, 'omesagisto123');
         }
         
-        // As funções showModal e hideModal foram mantidas, mas os elementos que elas operavam foram removidos do HTML.
+        // Funções para mostrar e esconder modais
         function showModal(modalElement) {
             modalElement.style.display = 'flex';
         }
@@ -666,59 +694,45 @@
             modalElement.style.display = 'none';
         }
         
-        // Função para mostrar notificação (mantida pois é útil para o painel admin)
+        // Sistema de abas
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover classe ativa de todos os botões e conteúdos
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Adicionar classe ativa ao botão clicado
+                btn.classList.add('active');
+                
+                // Mostrar o conteúdo correspondente
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(`${tabId}Tab`).classList.add('active');
+                
+                // Se for o painel administrativo, resetar o login
+                if (tabId === 'admin') {
+                    document.getElementById('adminPanel').classList.remove('active');
+                    document.getElementById('loginPanel').style.display = 'block';
+                }
+            });
+        });
+        
+        // Função para mostrar notificação
         function showNotification(message, isSuccess) {
             const notification = document.createElement('div');
             notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
             notification.textContent = message;
             document.body.appendChild(notification);
             
+            // Remover após 3 segundos
             setTimeout(() => {
                 notification.remove();
             }, 3000);
         }
         
-        // Função para apagar uma aplicação
-        function deleteApplication(id) {
-            if (confirm('Tem certeza que deseja apagar esta aplicação?')) {
-                let applications = JSON.parse(localStorage.getItem(storageKey)) || [];
-                const initialLength = applications.length;
-                applications = applications.filter(app => app.id !== id);
-                
-                if (applications.length < initialLength) {
-                    localStorage.setItem(storageKey, JSON.stringify(applications));
-                    loadApplications(); // Re-renderizar a lista após a exclusão
-                    showNotification('Aplicação apagada com sucesso!', true);
-                } else {
-                    showNotification('Erro ao apagar a aplicação.', false);
-                }
-            }
-        }
-
-        // Função para aprovar uma aplicação
-        function approveApplication(id) {
-            if (confirm('Tem certeza que deseja aprovar esta aplicação?')) {
-                let applications = JSON.parse(localStorage.getItem(storageKey)) || [];
-                let found = false;
-                applications = applications.map(app => {
-                    if (app.id === id) {
-                        app.approved = true;
-                        found = true;
-                    }
-                    return app;
-                });
-                
-                if (found) {
-                    localStorage.setItem(storageKey, JSON.stringify(applications));
-                    loadApplications(); // Re-renderizar a lista para refletir a aprovação
-                    showNotification('Aplicação aprovada com sucesso!', true);
-                } else {
-                    showNotification('Erro ao aprovar a aplicação.', false);
-                }
-            }
-        }
-
-        // Carregar aplicações do localStorage e renderizar na tela
+        // Carregar aplicações do localStorage
         function loadApplications() {
             const applicationListDiv = document.getElementById('applicationList');
             const noApplicationsDiv = document.getElementById('noApplications');
@@ -726,39 +740,22 @@
             // Limpar lista atual
             applicationListDiv.innerHTML = '';
             
-            let applications = JSON.parse(localStorage.getItem(storageKey)) || [];
-
-            // Atribuir IDs únicos e garantir o status 'approved' para cada aplicação
-            applications = applications.map(app => {
-                if (!app.id) {
-                    app.id = Date.now() + '-' + Math.random().toString(36).substring(2, 9); // Gera um ID único
-                }
-                if (app.approved === undefined) {
-                    app.approved = false; // Garante que a propriedade 'approved' existe
-                }
-                return app;
-            });
-
-            localStorage.setItem(storageKey, JSON.stringify(applications)); // Salva aplicações com IDs e status padrão
-
-            // Criar uma cópia para ordenação e exibição (não modifica o array original no localStorage)
-            const applicationsToDisplay = [...applications];
-            // Ordenar por data (mais recente primeiro)
-            applicationsToDisplay.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            // Obter aplicações do localStorage
+            const applications = JSON.parse(localStorage.getItem(storageKey)) || [];
             
-            if (applicationsToDisplay.length === 0) {
+            if (applications.length === 0) {
                 applicationListDiv.style.display = 'none';
                 noApplicationsDiv.style.display = 'block';
             } else {
                 applicationListDiv.style.display = 'grid';
                 noApplicationsDiv.style.display = 'none';
                 
-                applicationsToDisplay.forEach(app => {
+                // Ordenar por data (mais recente primeiro)
+                applications.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                applications.forEach(app => {
                     const card = document.createElement('div');
                     card.classList.add('application-card');
-                    if (app.approved) {
-                        card.classList.add('approved-card'); // Adiciona classe se a aplicação estiver aprovada
-                    }
                     
                     // Formatar data para exibição
                     const date = new Date(app.timestamp);
@@ -774,36 +771,79 @@
                         <p><strong>Motivo:</strong></p>
                         <div class="reason-text">${app.reason}</div>
                         <div class="timestamp">Enviado em: ${formattedDate}</div>
-                        <div class="admin-app-actions">
-                            <button class="btn-approve" data-id="${app.id}" ${app.approved ? 'disabled' : ''}><i class="fas fa-check-circle"></i> Aprovar</button>
-                            <button class="btn-delete" data-id="${app.id}"><i class="fas fa-trash-alt"></i> Apagar</button>
-                        </div>
                     `;
                     applicationListDiv.appendChild(card);
                 });
-
-                // Anexar event listeners aos botões de apagar e aprovar
-                applicationListDiv.querySelectorAll('.btn-delete').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const idToDelete = this.getAttribute('data-id');
-                        deleteApplication(idToDelete);
-                    });
-                });
-
-                applicationListDiv.querySelectorAll('.btn-approve').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const idToApprove = this.getAttribute('data-id');
-                        approveApplication(idToApprove);
-                    });
-                });
             }
         }
+        
+        // Formulário de envio
+        const staffForm = document.getElementById('staffForm');
+        const successModal = document.getElementById('successModal');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const closeButton = document.querySelector('#successModal .close-button');
+        
+        staffForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Mostrar loading
+            showModal(loadingOverlay);
+            
+            // Simular envio com timeout
+            setTimeout(() => {
+                // Coletar dados do formulário
+                const formData = {
+                    name: document.getElementById('name').value,
+                    age: parseInt(document.getElementById('age').value),
+                    discord: document.getElementById('discord').value,
+                    experience: document.querySelector('input[name="experience"]:checked').value,
+                    hours: document.getElementById('hours').value,
+                    reason: document.getElementById('reason').value,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Obter aplicações existentes do localStorage
+                const existingApplications = JSON.parse(localStorage.getItem(storageKey)) || [];
+                
+                // Adicionar nova aplicação
+                existingApplications.push(formData);
+                
+                // Salvar no localStorage
+                localStorage.setItem(storageKey, JSON.stringify(existingApplications));
+                
+                // Esconder loading
+                hideModal(loadingOverlay);
+                
+                // Mostrar modal de sucesso
+                showModal(successModal);
+                
+                // Resetar formulário
+                staffForm.reset();
+            }, 1500);
+        });
+        
+        // Fechar modal
+        closeButton.addEventListener('click', () => {
+            hideModal(successModal);
+        });
+        
+        // Fechar modal ao clicar fora
+        window.addEventListener('click', (event) => {
+            if (event.target === successModal) {
+                hideModal(successModal);
+            }
+        });
         
         // Sistema de login para administradores
         const adminLoginForm = document.getElementById('adminLoginForm');
         const loginPanel = document.getElementById('loginPanel');
         const adminPanel = document.getElementById('adminPanel');
         const logoutBtn = document.getElementById('logoutBtn');
+        
+        // Configurar senha padrão na primeira execução
+        if (!localStorage.getItem(adminPassKey)) {
+            localStorage.setItem(adminPassKey, 'omesagisto123');
+        }
         
         adminLoginForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -815,7 +855,7 @@
                 // Login bem-sucedido
                 loginPanel.style.display = 'none';
                 adminPanel.classList.add('active');
-                loadApplications(); // Carrega as aplicações após o login
+                loadApplications();
                 showNotification('Login realizado com sucesso!', true);
             } else {
                 // Senha incorreta
