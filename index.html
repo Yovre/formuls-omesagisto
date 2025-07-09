@@ -530,3 +530,337 @@
             background: #dc3545; /* Vermelho para erro */
         }
     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="form">
+                <i class="fas fa-file-alt"></i> Formulario
+            </button>
+            <button class="tab-btn" data-tab="admin" id="adminTabBtn">
+                <i class="fas fa-user-shield"></i> Painel Admin
+            </button>
+        </div>
+        
+        <div id="formTab" class="tab-content active">
+            <div class="header">
+                <div class="discord-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h1>FORMULARIO PARA STAFF</h1>
+                <p>Servidor do OMESAGISTO</p>
+                <span class="omesagisto-badge">YOUTUBER</span>
+            </div>
+            
+            <form id="staffForm">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Nome</label>
+                    <input type="text" id="name" class="form-control" required placeholder="Seu nome completo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age"><i class="fas fa-birthday-cake"></i> Idade</label>
+                    <input type="number" id="age" class="form-control" required min="13" placeholder="Sua idade">
+                </div>
+                
+                <div class="form-group">
+                    <label for="discord"><i class="fab fa-discord"></i> Discord (Nick)</label>
+                    <input type="text" id="discord" class="form-control" required placeholder="ex: OMESAGISTO#0001">
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-briefcase"></i> Ja foi staff antes?</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="experience" value="Sim" required> Sim
+                        </label>
+                        <label>
+                            <input type="radio" name="experience" value="Não"> Nao
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hours"><i class="fas fa-clock"></i> Horas disponíveis por dia</label>
+                    <select id="hours" class="form-control" required>
+                        <option value="">Selecione...</option>
+                        <option value="1-2 horas">1-2 horas</option>
+                        <option value="3-4 horas">3-4 horas</option>
+                        <option value="5+ horas">5+ horas</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason"><i class="fas fa-comment-alt"></i> Por que quer ser staff aqui?</label>
+                    <textarea id="reason" class="form-control" required placeholder="Conte por que você seria uma boa adição à equipe..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" required>
+                            <span>Concordo com as regras e me comprometo com o servidor</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-paper-plane"></i> ENVIAR APLICACAO
+                </button>
+            </form>
+            
+            <div class="footer">
+                <p>Respostas serao avaliadas pela equipe do OMESAGISTO</p>
+            </div>
+        </div>
+        
+        <div id="adminTab" class="tab-content">
+            <div class="admin-header">
+                <i class="fas fa-user-shield"></i>
+                <h1>PAINEL ADMINISTRATIVO</h1>
+                <p>Visualizar Aplicacoes para Staff - OMESAGISTO</p>
+            </div>
+            
+            <div id="loginPanel">
+                <div class="login-container">
+                    <div class="login-header">
+                        <h2>Acesso Restrito</h2>
+                        <p>Somente para administradores</p>
+                    </div>
+                    <form id="adminLoginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="adminPass"><i class="fas fa-lock"></i> Senha de Administrador</label>
+                            <input type="password" id="adminPass" class="form-control" required placeholder="Digite a senha">
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-sign-in-alt"></i> ACESSAR PAINEL
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div id="adminPanel" class="admin-panel">
+                <div class="admin-actions">
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+                
+                <div id="applicationList" class="application-list">
+                    </div>
+
+                <div id="noApplications" class="no-applications" style="display: none;">
+                    <p>Nenhuma aplicacao encontrada.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <i class="fas fa-check-circle"></i>
+            <h3>Aplicação Enviada com Sucesso!</h3>
+            <p>A equipe do OMESAGISTO ira analisar seu formulario em breve.</p>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <i class="fas fa-spinner"></i>
+        <span>Enviando aplicacao...</span>
+    </div>
+    
+    <script>
+        // Simular o Firebase usando localStorage
+        const storageKey = 'omesagistoStaffApplications';
+        const adminPassKey = 'adminPassword';
+        
+        // Funções para mostrar e esconder modais
+        function showModal(modalElement) {
+            modalElement.style.display = 'flex';
+        }
+
+        function hideModal(modalElement) {
+            modalElement.style.display = 'none';
+        }
+        
+        // Sistema de abas
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remover classe ativa de todos os botões e conteúdos
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Adicionar classe ativa ao botão clicado
+                btn.classList.add('active');
+                
+                // Mostrar o conteúdo correspondente
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(`${tabId}Tab`).classList.add('active');
+                
+                // Se for o painel administrativo, resetar o login
+                if (tabId === 'admin') {
+                    document.getElementById('adminPanel').classList.remove('active');
+                    document.getElementById('loginPanel').style.display = 'block';
+                }
+            });
+        });
+        
+        // Função para mostrar notificação
+        function showNotification(message, isSuccess) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Carregar aplicações do localStorage
+        function loadApplications() {
+            const applicationListDiv = document.getElementById('applicationList');
+            const noApplicationsDiv = document.getElementById('noApplications');
+            
+            // Limpar lista atual
+            applicationListDiv.innerHTML = '';
+            
+            // Obter aplicações do localStorage
+            const applications = JSON.parse(localStorage.getItem(storageKey)) || [];
+            
+            if (applications.length === 0) {
+                applicationListDiv.style.display = 'none';
+                noApplicationsDiv.style.display = 'block';
+            } else {
+                applicationListDiv.style.display = 'grid';
+                noApplicationsDiv.style.display = 'none';
+                
+                // Ordenar por data (mais recente primeiro)
+                applications.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                applications.forEach(app => {
+                    const card = document.createElement('div');
+                    card.classList.add('application-card');
+                    
+                    // Formatar data para exibição
+                    const date = new Date(app.timestamp);
+                    const formattedDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} às ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+                    
+                    card.innerHTML = `
+                        <h2><i class="fas fa-file-alt"></i> Aplicação de ${app.name}</h2>
+                        <p><strong>Nome:</strong> ${app.name}</p>
+                        <p><strong>Idade:</strong> ${app.age}</p>
+                        <p><strong>Discord:</strong> ${app.discord}</p>
+                        <p><strong>Já foi staff:</strong> ${app.experience}</p>
+                        <p><strong>Horas disponíveis:</strong> ${app.hours}</p>
+                        <p><strong>Motivo:</strong></p>
+                        <div class="reason-text">${app.reason}</div>
+                        <div class="timestamp">Enviado em: ${formattedDate}</div>
+                    `;
+                    applicationListDiv.appendChild(card);
+                });
+            }
+        }
+        
+        // Formulário de envio
+        const staffForm = document.getElementById('staffForm');
+        const successModal = document.getElementById('successModal');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const closeButton = document.querySelector('#successModal .close-button');
+        
+        staffForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Mostrar loading
+            showModal(loadingOverlay);
+            
+            // Simular envio com timeout
+            setTimeout(() => {
+                // Coletar dados do formulário
+                const formData = {
+                    name: document.getElementById('name').value,
+                    age: parseInt(document.getElementById('age').value),
+                    discord: document.getElementById('discord').value,
+                    experience: document.querySelector('input[name="experience"]:checked').value,
+                    hours: document.getElementById('hours').value,
+                    reason: document.getElementById('reason').value,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Obter aplicações existentes do localStorage
+                const existingApplications = JSON.parse(localStorage.getItem(storageKey)) || [];
+                
+                // Adicionar nova aplicação
+                existingApplications.push(formData);
+                
+                // Salvar no localStorage
+                localStorage.setItem(storageKey, JSON.stringify(existingApplications));
+                
+                // Esconder loading
+                hideModal(loadingOverlay);
+                
+                // Mostrar modal de sucesso
+                showModal(successModal);
+                
+                // Resetar formulário
+                staffForm.reset();
+            }, 1500);
+        });
+        
+        // Fechar modal
+        closeButton.addEventListener('click', () => {
+            hideModal(successModal);
+        });
+        
+        // Fechar modal ao clicar fora
+        window.addEventListener('click', (event) => {
+            if (event.target === successModal) {
+                hideModal(successModal);
+            }
+        });
+        
+        // Sistema de login para administradores
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const loginPanel = document.getElementById('loginPanel');
+        const adminPanel = document.getElementById('adminPanel');
+        const logoutBtn = document.getElementById('logoutBtn');
+        
+        // Configurar senha padrão na primeira execução
+        if (!localStorage.getItem(adminPassKey)) {
+            localStorage.setItem(adminPassKey, 'omesagisto123');
+        }
+        
+        adminLoginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const passwordInput = document.getElementById('adminPass').value;
+            const correctPassword = localStorage.getItem(adminPassKey);
+            
+            if (passwordInput === correctPassword) {
+                // Login bem-sucedido
+                loginPanel.style.display = 'none';
+                adminPanel.classList.add('active');
+                loadApplications();
+                showNotification('Login realizado com sucesso!', true);
+            } else {
+                // Senha incorreta
+                showNotification('Senha incorreta. Tente novamente.', false);
+                document.getElementById('adminPass').value = '';
+            }
+        });
+        
+        // Botão de logout
+        logoutBtn.addEventListener('click', () => {
+            adminPanel.classList.remove('active');
+            loginPanel.style.display = 'block';
+            document.getElementById('adminPass').value = '';
+            showNotification('Sessão encerrada com sucesso.', true);
+        });
+    </script>
+</body>
+</html>
