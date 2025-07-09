@@ -533,12 +533,6 @@
 </head>
 <body>
     <div class="container">
-        <div class="tabs" style="display: none;">
-            <button class="tab-btn active" data-tab="admin" id="adminTabBtn">
-                <i class="fas fa-user-shield"></i> Painel Admin
-            </button>
-        </div>
-        
         <div id="adminTab" class="tab-content active">
             <div class="admin-header">
                 <i class="fas fa-user-shield"></i>
@@ -596,7 +590,7 @@
             localStorage.setItem(adminPassKey, 'omesagisto123');
         }
         
-        // Funções para mostrar e esconder modais (mantidas para uso futuro ou se necessário para notificações)
+        // As funções showModal e hideModal foram mantidas, mas os elementos que elas operavam foram removidos do HTML.
         function showModal(modalElement) {
             modalElement.style.display = 'flex';
         }
@@ -605,28 +599,8 @@
             modalElement.style.display = 'none';
         }
         
-        // As abas agora não têm mais efeito de "troca", já que só há uma.
-        // O código de abas foi simplificado ou removido, mantendo o admin como ativo.
-        const tabBtns = document.querySelectorAll('.tab-btn'); // Ainda existe para não quebrar o seletor, mas o botão do form foi removido.
-        const tabContents = document.querySelectorAll('.tab-content'); // O div do form foi removido.
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Como só há um botão, este listener ainda funcionaria, mas não é mais necessário para alternar.
-                // Mantido para compatibilidade, mas o foco é no admin.
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                btn.classList.add('active');
-                const tabId = btn.getAttribute('data-tab');
-                document.getElementById(`${tabId}Tab`).classList.add('active');
-                
-                if (tabId === 'admin') {
-                    document.getElementById('adminPanel').classList.remove('active');
-                    document.getElementById('loginPanel').style.display = 'block';
-                }
-            });
-        });
+        // A lógica de abas (tabBtns, tabContents e seus event listeners) foi removida,
+        // pois não há mais abas para alternar.
         
         // Função para mostrar notificação (mantida pois é útil para o painel admin)
         function showNotification(message, isSuccess) {
@@ -685,18 +659,11 @@
             }
         }
         
-        // --- CÓDIGO RELACIONADO AO FORMULÁRIO DE APLICAÇÃO REMOVIDO AQUI ---
-        // As variáveis staffForm, successModal, loadingOverlay, closeButton e seus event listeners foram removidos.
-        // As funções showModal e hideModal foram mantidas no escopo global para o caso de serem reutilizadas, mas os elementos que elas operavam foram removidos do HTML.
-        // --- FIM DA REMOÇÃO ---
-        
         // Sistema de login para administradores
         const adminLoginForm = document.getElementById('adminLoginForm');
         const loginPanel = document.getElementById('loginPanel');
         const adminPanel = document.getElementById('adminPanel');
         const logoutBtn = document.getElementById('logoutBtn');
-        
-        // A senha padrão já foi configurada no início do script
         
         adminLoginForm.addEventListener('submit', function(e) {
             e.preventDefault();
